@@ -17,7 +17,7 @@ public class PureNetUtil {
         HttpsURLConnection conn = null;
 
         try{
-            URL u = new URL(url);
+            URL u = new URL(null, url,new sun.net.www.protocol.https.Handler());
             conn = (HttpsURLConnection) u.openConnection();
             StringBuffer sb = null;
             if(param !=null){
