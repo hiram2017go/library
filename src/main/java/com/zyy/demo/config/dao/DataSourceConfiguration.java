@@ -18,16 +18,16 @@ public class DataSourceConfiguration {
     @Value("${jdbc.url}")
     private String jdbcUrl;
 
-    @Value("${jdbc.usernmae}")
+    @Value("${jdbc.username}")
     private String jdbcUsername;
 
-    @Value("${jdbc.password")
+    @Value("${jdbc.password}")
     private String jdbcPassWord;
 
     @Bean(name="dataSource")
     public ComboPooledDataSource createDataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
-
+        System.out.println("有调用到这里吗");
         dataSource.setDriverClass(jdbcDriver);
         dataSource.setJdbcUrl(jdbcUrl);
         dataSource.setUser(jdbcUsername);
