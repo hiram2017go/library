@@ -36,7 +36,14 @@ public class WxMpXmlMessage implements Serializable {
    */
   private Map<String, Object> allFieldsMap;
 
-  ///////////////////////
+    public Map<String, Object> getAllFieldsMap() {
+        return allFieldsMap;
+    }
+
+    public void setAllFieldsMap(Map<String, Object> allFieldsMap) {
+        this.allFieldsMap = allFieldsMap;
+    }
+///////////////////////
   // 以下都是微信推送过来的消息的xml的element所对应的属性
   ///////////////////////
 
@@ -630,7 +637,7 @@ public class WxMpXmlMessage implements Serializable {
     //修改微信变态的消息内容格式，方便解析
     xml = xml.replace("</PicList><PicList>", "");
     final WxMpXmlMessage xmlMessage = XStreamTransformer.fromXml(WxMpXmlMessage.class, xml);
-    //xmlMessage.setAllFieldsMap(XmlUtils.xml2Map(xml));
+    xmlMessage.setAllFieldsMap(XmlUtils.xml2Map(xml));
     return xmlMessage;
   }
 

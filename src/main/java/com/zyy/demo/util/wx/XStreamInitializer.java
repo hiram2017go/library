@@ -46,7 +46,7 @@ public class XStreamInitializer {
     xstream.setMode(XStream.NO_REFERENCES);
     XStream.setupDefaultSecurity(xstream);
     xstream.allowTypesByWildcard(new String[]{
-      "me.chanjar.weixin.**", "cn.binarywang.wx.**", "com.github.binarywang.**"
+      "me.chanjar.weixin.**", "cn.binarywang.wx.**", "com.github.binarywang.**","com.zyy.**"
     });
 
     xstream.setClassLoader(Thread.currentThread().getContextClassLoader());

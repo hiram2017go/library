@@ -1,5 +1,6 @@
 package com.zyy.demo.controller;
 
+import com.zyy.demo.message.WxMpXmlMessage;
 import com.zyy.demo.util.wx.CheckUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -55,6 +56,9 @@ public class WxPortalController {
         if(!CheckUtil.checkSignature(signature,timestamp,nonce )) {
             throw new IllegalArgumentException("非法请求，可能属于伪造的请求！");
         }
+
+        WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(requestBody);
+
 
         return "diu";
     }
