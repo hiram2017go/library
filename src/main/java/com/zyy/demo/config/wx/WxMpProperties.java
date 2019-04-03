@@ -1,6 +1,6 @@
 package com.zyy.demo.config.wx;
 
-import com.zyy.demo.util.wx.JsonUtils;
+//import com.zyy.demo.util.wx.JsonUtils;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -29,6 +29,6 @@ public class WxMpProperties {
 
     @Override
     public String toString() {
-        return JsonUtils.toJson(this);
+        return "";//JsonUtils.toJson(this);
     }
 }

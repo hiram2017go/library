@@ -1,5 +1,6 @@
 package com.zyy.demo.controller;
 
+import com.zyy.demo.util.wx.CheckUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,9 +26,37 @@ public class WxPortalController {
             throw new IllegalArgumentException("请求参数非法，请查实");
         }
 
+        if(CheckUtil.checkSignature(signature,timestamp,nonce )) {
+            return echostr;
+        }
+
+        return "非法請求";
+    }
+
+    @PostMapping(produces = "application/xml;charset=UTF-8")
+    public String authPost(@PathVariable String appid,
+                           @RequestBody String requestBody,
+                           @RequestParam(name = "signature", required = false) String signature,
+                           @RequestParam(name ="timestamp", required = false) String timestamp,
+                           @RequestParam(name = "nonce", required = false) String nonce,
+                           @RequestParam(name = "openid", required = false) String openid,
+                           @RequestParam(name = "encrypt_type", required = false) String encType,
+                           @RequestParam(name = "msg_signature", required = false) String msgSignature){
 
 
-        return "fuck";
+        this.logger.info("\n接收微信请求：[appid=[{}]] [openid=[{}], [signature=[{}], encType=[{}], msgSignature=[{}],"
+                        + " timestamp=[{}], nonce=[{}], requestBody=[\n{}\n] ",
+                appid,openid, signature, encType, msgSignature, timestamp, nonce, requestBody);
+
+        if(StringUtils.isAnyBlank(signature, timestamp, nonce)){
+            throw new IllegalArgumentException("請求參數非法，請核對");
+        }
+
+        if(!CheckUtil.checkSignature(signature,timestamp,nonce )) {
+            throw new IllegalArgumentException("非法请求，可能属于伪造的请求！");
+        }
+
+        return "diu";
     }
 
 }
