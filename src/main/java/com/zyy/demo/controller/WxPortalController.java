@@ -1,11 +1,15 @@
 package com.zyy.demo.controller;
 
 import com.zyy.demo.message.WxMpXmlMessage;
+import com.zyy.demo.message.WxMpXmlOutMessage;
+import com.zyy.demo.message.WxMpXmlOutTextMessage;
 import com.zyy.demo.util.wx.CheckUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping("/wx/portal/{appid}")
@@ -49,18 +53,26 @@ public class WxPortalController {
                         + " timestamp=[{}], nonce=[{}], requestBody=[\n{}\n] ",
                 appid,openid, signature, encType, msgSignature, timestamp, nonce, requestBody);
 
-        if(StringUtils.isAnyBlank(signature, timestamp, nonce)){
-            throw new IllegalArgumentException("請求參數非法，請核對");
-        }
-
-        if(!CheckUtil.checkSignature(signature,timestamp,nonce )) {
-            throw new IllegalArgumentException("非法请求，可能属于伪造的请求！");
-        }
+//        if(StringUtils.isAnyBlank(signature, timestamp, nonce)){
+//            throw new IllegalArgumentException("請求參數非法，請核對");
+//        }
+//
+//        if(!CheckUtil.checkSignature(signature,timestamp,nonce )) {
+//            throw new IllegalArgumentException("非法请求，可能属于伪造的请求！");
+//        }
 
         WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(requestBody);
 
+        WxMpXmlOutTextMessage outMessage = new WxMpXmlOutTextMessage();
+        outMessage.setContent("haha"+inMessage.getContent());
+        outMessage.setFromUserName(inMessage.getFromUser());
+        outMessage.setToUserName(inMessage.getToUser());
 
-        return "diu";
+        outMessage.setMsgType("text");
+        outMessage.setCreateTime(new Date().getTime());
+        String result = outMessage.toXml();
+        System.out.println("resutl ====="+result);
+        return outMessage.toXml();
     }
 
 }

@@ -51,7 +51,23 @@ public class WxMpXmlMessage implements Serializable {
   @XStreamConverter(value = XStreamCDataConverter.class)
   private String toUser;
 
-  @XStreamAlias("FromUserName")
+    public String getToUser() {
+        return toUser;
+    }
+
+    public void setToUser(String toUser) {
+        this.toUser = toUser;
+    }
+
+    public String getFromUser() {
+        return fromUser;
+    }
+
+    public void setFromUser(String fromUser) {
+        this.fromUser = fromUser;
+    }
+
+    @XStreamAlias("FromUserName")
   @XStreamConverter(value = XStreamCDataConverter.class)
   private String fromUser;
 
@@ -621,7 +637,15 @@ public class WxMpXmlMessage implements Serializable {
   @XStreamAlias("ExtInfo")
   private String extInfo;
 
-  /**
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    /**
    * 用户的实时地理位置信息（目前只精确到省一级），可在国家统计局网站查到对应明细： http://www.stats.gov.cn/tjsj/tjbz/xzqhdm/201504/t20150415_712722.html
    */
   @XStreamAlias("RegionCode")

@@ -29,7 +29,6 @@ public abstract class WxMpXmlOutMessage implements Serializable {
   @XStreamConverter(value = XStreamCDataConverter.class)
   protected String msgType;
 
-
     public String getToUserName() {
         return toUserName;
     }

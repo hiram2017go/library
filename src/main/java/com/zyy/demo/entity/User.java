@@ -37,14 +37,6 @@ public class User {
         this.wxid = wxid;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
     /**
      * 用户id
      */
@@ -64,11 +56,5 @@ public class User {
      * 微信id
      */
     private String wxid;
-
-    /**
-     * 创建时间
-     */
-    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss a", locale = "zh", timezone = "GMT-8")
-    private Date createTime;
 
 }
