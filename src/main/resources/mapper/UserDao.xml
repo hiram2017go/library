@@ -13,12 +13,12 @@
     <select id="queryUserById" resultType="com.zyy.demo.entity.User">
         SELECT  id,username,nickname,wxid,createTime
         FROM USER
-        WHERE id = {#id}
+        WHERE id = #{id}
     </select>
 
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id" keyColumn="id" parameterType="com.zyy.demo.entity.User">
         INSERT into USER (username,nickname,wxid)
-        VALUES ({#username}, {#nickname}, {#wxid})
+        VALUES (#{username}, #{nickname}, #{wxid})
     </insert>
 
     <update id="updateUser" parameterType="com.zyy.demo.entity.User">
@@ -34,7 +34,7 @@
 
     <delete id="deleteUserById">
         DELETE FROM USER
-        where id = {#id}
+        where id = #{id}
     </delete>
 
 </mapper>
