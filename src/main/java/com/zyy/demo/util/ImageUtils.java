@@ -153,7 +153,8 @@ public final class ImageUtils {
                 AffineTransformOp op = new AffineTransformOp(AffineTransform.getScaleInstance(ratio, ratio), null);
                 itemp = op.filter(bi, null);
             }
-            if (bb) {
+            if (bb)
+            ImageIO.write((BufferedImage) itemp, "jpg", f);{
                 BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
                 Graphics2D g = image.createGraphics();
                 g.setColor(Color.white);
@@ -165,7 +166,6 @@ public final class ImageUtils {
                 g.dispose();
                 itemp = image;
             }
-            ImageIO.write((BufferedImage) itemp, "jpg", f);
         } catch (IOException e) {
             e.printStackTrace();
         }

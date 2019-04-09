@@ -39,7 +39,7 @@ public class UserController {
 //        userService.addUser(user);
 
 
-        ImageUtils.pressText("D:\\12345.jpg", "旺仔之印", "宋体", Font.BOLD|Font.ITALIC, 20, Color.BLACK, 0, 0, 8f);
+        ImageUtils.pressText("D:\\12345.jpg", "旺仔之印", "宋体", Font.BOLD|Font.ITALIC, 20, Color.red, 300, 500, 0.6f);
 
         return "添加已完成";
     }
