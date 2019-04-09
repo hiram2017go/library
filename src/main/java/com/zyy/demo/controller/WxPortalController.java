@@ -53,20 +53,20 @@ public class WxPortalController {
                         + " timestamp=[{}], nonce=[{}], requestBody=[\n{}\n] ",
                 appid,openid, signature, encType, msgSignature, timestamp, nonce, requestBody);
 
-//        if(StringUtils.isAnyBlank(signature, timestamp, nonce)){
-//            throw new IllegalArgumentException("請求參數非法，請核對");
-//        }
-//
-//        if(!CheckUtil.checkSignature(signature,timestamp,nonce )) {
-//            throw new IllegalArgumentException("非法请求，可能属于伪造的请求！");
-//        }
+        if(StringUtils.isAnyBlank(signature, timestamp, nonce)){
+            throw new IllegalArgumentException("請求參數非法，請核對");
+        }
+
+        if(!CheckUtil.checkSignature(signature,timestamp,nonce )) {
+            throw new IllegalArgumentException("非法请求，可能属于伪造的请求！");
+        }
 
         WxMpXmlMessage inMessage = WxMpXmlMessage.fromXml(requestBody);
 
         WxMpXmlOutTextMessage outMessage = new WxMpXmlOutTextMessage();
         outMessage.setContent("haha"+inMessage.getContent());
-        outMessage.setFromUserName(inMessage.getFromUser());
-        outMessage.setToUserName(inMessage.getToUser());
+        outMessage.setFromUserName(inMessage.getToUser());
+        outMessage.setToUserName(inMessage.getFromUser());
 
         outMessage.setMsgType("text");
         outMessage.setCreateTime(new Date().getTime());

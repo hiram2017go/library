@@ -3,6 +3,7 @@ package com.zyy.demo.controller;
 import com.zyy.demo.dao.UserDao;
 import com.zyy.demo.entity.User;
 import com.zyy.demo.service.UserService;
+import com.zyy.demo.util.ImageUtils;
 import com.zyy.demo.util.wx.CheckUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.Date;
 
 @RestController
@@ -27,16 +29,19 @@ public class UserController {
                           @RequestParam(name = "nickname", required = false) String nickname,
                           @RequestParam(name = "wxid", required = false) String wxid) {
 //        System.out.println("wx接口验证get请求appid=" + appid);
-         this.logger.info("\n接收来自服务器的验证信息, [{}, {}, {}]", username, nickname, wxid);
-         this.logger.info("\n接收来自服务器的验证信息, [{}, {}, {}]", username, nickname, wxid);
-        System.out.println("username="+username);
-        User user = new User();
-        user.setUsername(username);
-        user.setNickname(nickname);
-        user.setWxid(wxid);
-        userService.addUser(user);
+//         this.logger.info("\n接收来自服务器的验证信息, [{}, {}, {}]", username, nickname, wxid);
+//         this.logger.info("\n接收来自服务器的验证信息, [{}, {}, {}]", username, nickname, wxid);
+//        System.out.println("username="+username);
+//        User user = new User();
+//        user.setUsername(username);
+//        user.setNickname(nickname);
+//        user.setWxid(wxid);
+//        userService.addUser(user);
 
-        return "非法請求";
+
+        ImageUtils.pressText("D:\\12345.jpg", "旺仔之印", "宋体", Font.BOLD|Font.ITALIC, 20, Color.BLACK, 0, 0, 8f);
+
+        return "添加已完成";
     }
 
 
