@@ -24,25 +24,30 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value="/get",method={RequestMethod.POST,RequestMethod.GET})
     @GetMapping(produces = "text/plain;charset=utf-8")
     public String authGet(@RequestParam(name = "username", required = false) String username,
                           @RequestParam(name = "nickname", required = false) String nickname,
                           @RequestParam(name = "wxid", required = false) String wxid) {
-//        System.out.println("wx接口验证get请求appid=" + appid);
-//         this.logger.info("\n接收来自服务器的验证信息, [{}, {}, {}]", username, nickname, wxid);
-//         this.logger.info("\n接收来自服务器的验证信息, [{}, {}, {}]", username, nickname, wxid);
-//        System.out.println("username="+username);
-//        User user = new User();
-//        user.setUsername(username);
-//        user.setNickname(nickname);
-//        user.setWxid(wxid);
-//        userService.addUser(user);
-
-
-        ImageUtils.pressText("D:\\12345.jpg", "旺仔之印", "宋体", Font.BOLD|Font.ITALIC, 20, Color.red, 300, 500, 0.6f);
+         this.logger.info("\n接收来自服务器的验证信息, [{}, {}, {}]", username, nickname, wxid);
+         this.logger.info("\n接收来自服务器的验证信息, [{}, {}, {}]", username, nickname, wxid);
+        System.out.println("username="+username);
+        User user = new User();
+        user.setUsername(username);
+        user.setNickname(nickname);
+        user.setWxid(wxid);
+        userService.addUser(user);
 
         return "添加已完成";
     }
 
 
+    @RequestMapping(value="/pressText",method={RequestMethod.POST,RequestMethod.GET})
+    @GetMapping(produces = "text/plain;charset=utf-8")
+    public String pressText() {
+
+        ImageUtils.pressText("D:\\12345.jpg", "阿拉卡夏之眼", "宋体", Font.BOLD|Font.ITALIC, 20, Color.red, 300, 500, 0.6f);
+
+        return "添加已完成";
+    }
 }
