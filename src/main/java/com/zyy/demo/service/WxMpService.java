@@ -82,5 +82,7 @@ public interface WxMpService {
      */
     void setWxMpConfigStorage(WxMpConfigStorage wxConfigProvider);
 
+    String getAccessToken();
+
 
 }

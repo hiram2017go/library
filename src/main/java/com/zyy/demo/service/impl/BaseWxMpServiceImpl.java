@@ -43,4 +43,5 @@ public abstract class BaseWxMpServiceImpl<H, P> implements WxMpService, RequestH
 
         return false;
     }
+
 }
